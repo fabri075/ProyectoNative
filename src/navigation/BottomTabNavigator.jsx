@@ -5,6 +5,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import ConfigurationScreen from "../screens/ConfigurationScreen";
 import NotificationScreen from "../screens/NotificationScreen";
 import MainScreen from "../screens/MainScreen";
+import colors from "../constants/colors";
 
 const BottomTabs = createBottomTabNavigator();
 
@@ -15,6 +16,8 @@ export default BottomTabNavigator = () => {
         headerShown: false,
         tabBarShowLabel: false,
         tabBarStyle: styles.tabBar,
+        tabBarActiveTintColor: colors.primary,
+        tabBarActiveBackgroundColor: colors.tertiary,
       }}
     >
       <BottomTabs.Screen
@@ -60,7 +63,7 @@ export default BottomTabNavigator = () => {
 const styles = StyleSheet.create({
   tabBar: {
     backgroundColor: "#fff",
-    paddingTop: 1,
+    paddingTop: 0,
     height: 75,
     position: "absolute",
     shadowColor: "#000",
