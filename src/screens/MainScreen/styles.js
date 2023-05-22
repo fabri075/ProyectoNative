@@ -3,10 +3,13 @@ import colors from "../../constants/colors";
 
 const styles = StyleSheet.create({
   container: {
+    marginTop: 20,
     flex: 1,
     justifyContent: "space-between",
     alignItems: "center",
-    backgroundColor: colors.primary
+    backgroundColor: colors.primary,
+    maxHeight: "90%",
+    paddingBottom: 15,
   },
 
   user: {
@@ -18,7 +21,7 @@ const styles = StyleSheet.create({
   },
 
   logout: {
-    marginBottom: 20,
+    marginBottom: 10,
   },
 
   image: {

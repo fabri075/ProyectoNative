@@ -22,7 +22,7 @@ export default BottomTabNavigator = () => {
         component={MainScreen}
         options={{
           tabBarIcon: () => (
-            <View>
+            <View style={styles.tabButtons}>
               <Ionicons name="home" size={30} color="black" />
               <Text>Inicio</Text>
             </View>
@@ -34,7 +34,7 @@ export default BottomTabNavigator = () => {
         component={ConfigurationScreen}
         options={{
           tabBarIcon: () => (
-            <View>
+            <View style={styles.tabButtons}>
               <Ionicons name="settings" size={30} color="black" />
               <Text>Configuración</Text>
             </View>
@@ -46,7 +46,7 @@ export default BottomTabNavigator = () => {
         component={NotificationScreen}
         options={{
           tabBarIcon: () => (
-            <View>
+            <View style={styles.tabButtons}>
               <Ionicons name="notifications" size={30} color="black" />
               <Text>Notificaciones</Text>
             </View>
@@ -60,15 +60,18 @@ export default BottomTabNavigator = () => {
 const styles = StyleSheet.create({
   tabBar: {
     backgroundColor: "#fff",
-    paddingTop: 15,
-    borderTopEndRadius: 30,
-    borderTopStartRadius: 30,
-    height: 85,
+    paddingTop: 1,
+    height: 75,
     position: "absolute",
     shadowColor: "#000",
     shadowOffset: { width: 0, height: 0 },
     shadowOpacity: 0.2,
     shadowRadius: 5,
     elevation: 5,
+  },
+  tabButtons: {
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
   },
 });

@@ -1,10 +1,14 @@
 import { View, Text } from "react-native";
 import React from "react";
+import styles from "./styles";
+import Card from "../../components/Card";
 
 const ConfigurationScreen = () => {
   return (
-    <View>
-      <Text>Configuracion</Text>
+    <View style={styles.container}>
+      <Card otherStyles={{ marginTop: 20 }}>
+        <Text style={styles.welcome}>Configuracion</Text>
+      </Card>
     </View>
   );
 };
