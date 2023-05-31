@@ -6,8 +6,12 @@ import Button from "../../components/Button";
 import styles from "./styles";
 import { AntDesign } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { useDispatch, useSelector } from "react-redux";
+import { selectedUser } from "../../store/actions/users.action";
 
 const LoginScreen = ({ navigation }) => {
+  const users = useSelector(state => state.users.users);
+  const dispatch = useDispatch();
   const [user, setUser] = useState("");
   const [pass, setPass] = useState("");
   const [logFail, setLogFail] = useState("none");
@@ -23,11 +27,13 @@ const LoginScreen = ({ navigation }) => {
     setPass(text);
   };
   const onLogin = (user, pass) => {
-    if (user !== "prueba" || pass !== "route") {
+    const log = users.find((data) => data.user === user && data.password === pass);
+    if (!log) {
       setFailLogin(true);
       return;
     }
     setFailLogin(false);
+    dispatch(selectedUser(log.id));
     navigation.navigate("Botons");
   };
   return (
