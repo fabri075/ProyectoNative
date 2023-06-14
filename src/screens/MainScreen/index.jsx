@@ -18,7 +18,7 @@ const MainScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <View>
-        <Card otherStyles={{ marginTop: 20 }}>
+        <Card >
           <Text style={styles.welcome}>
             ¡Bienvenido <Text style={styles.user}>{`${userLogued.name} ${userLogued.last_name}` }!  </Text>
           </Text>

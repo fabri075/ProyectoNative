@@ -1,11 +1,15 @@
 import { StyleSheet, Text, View } from "react-native";
 
 import Ionicons from "@expo/vector-icons/Ionicons";
+import { Entypo } from '@expo/vector-icons'; 
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import ConfigurationScreen from "../screens/ConfigurationScreen";
 import NotificationScreen from "../screens/NotificationScreen";
+import ProductScreen from "../screens/ProductScreen";
 import MainScreen from "../screens/MainScreen";
 import colors from "../constants/colors";
+import { TouchableOpacity } from "react-native";
+import NewProductScreen from "../screens/NewProductScreen";
 
 const BottomTabs = createBottomTabNavigator();
 
@@ -13,7 +17,6 @@ export default BottomTabNavigator = () => {
   return (
     <BottomTabs.Navigator
       screenOptions={{
-        headerShown: false,
         tabBarShowLabel: false,
         tabBarStyle: styles.tabBar,
         tabBarActiveTintColor: colors.primary,
@@ -24,6 +27,7 @@ export default BottomTabNavigator = () => {
         name="Home"
         component={MainScreen}
         options={{
+          title: "Menú principal",
           tabBarIcon: () => (
             <View style={styles.tabButtons}>
               <Ionicons name="home" size={30} color="black" />
@@ -33,11 +37,30 @@ export default BottomTabNavigator = () => {
         }}
       />
       <BottomTabs.Screen
+        name="Product"
+        component={ProductScreen}
+        options={({ navigation }) => ({
+          title: "Productos",
+          tabBarIcon: () => (
+            <View style={styles.tabButtons}>
+              <Entypo name="shop" size={24} color="black" />
+              <Text>Productos</Text>
+            </View>
+          ),
+          headerRight: () => (
+            <TouchableOpacity onPress={() => navigation.navigate("newProduct")}>
+              <Ionicons name="md-add" color="black" size={23} />
+            </TouchableOpacity>
+          ),
+        })}
+      />
+      <BottomTabs.Screen
         name="Configuration"
         component={ConfigurationScreen}
         options={{
+          title: "Configuración",
           tabBarIcon: () => (
-            <View style={styles.tabButtons}>
+            <View style={styles.tabButtons}> 
               <Ionicons name="settings" size={30} color="black" />
               <Text>Configuración</Text>
             </View>
@@ -45,17 +68,10 @@ export default BottomTabNavigator = () => {
         }}
       />
       <BottomTabs.Screen
-        name="Notification"
-        component={NotificationScreen}
-        options={{
-          tabBarIcon: () => (
-            <View style={styles.tabButtons}>
-              <Ionicons name="notifications" size={30} color="black" />
-              <Text>Notificaciones</Text>
-            </View>
-          ),
-        }}
-      />
+      name="newProduct"
+      component={NewProductScreen}
+      options={{ title: "Nuevo producto", tabBarButton: () => null}}
+    />
     </BottomTabs.Navigator>
   );
 };
