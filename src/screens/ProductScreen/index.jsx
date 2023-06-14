@@ -1,7 +1,8 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { FlatList } from "react-native";
+import { FlatList, View } from "react-native";
 import ProductItem from "../../components/ProductItem";
+import styles from "./styles";
 
 const ProductScreen = () => {
   const products = useSelector(state => state.products.products);
@@ -14,11 +15,13 @@ const ProductScreen = () => {
   );
 
   return (
+    <View style={styles.container}>
       <FlatList
         data={products}
         keyExtractor={item => item.id}
         renderItem={renderItem}
       />
+      </View>
   );
 };
 

@@ -15,7 +15,7 @@ const NewProductScreen = ({ navigation }) => {
   const dispatch = useDispatch();
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const [image, setImage] = useState();
+  const [image, setImage] = useState("");
 
   const handleTitleChange = text => setTitle(text);
   const handleDescriptionChange = text => setDescription(text);
@@ -26,7 +26,7 @@ const NewProductScreen = ({ navigation }) => {
   };
 
   return (
-    <ScrollView>
+    <ScrollView style={styles.bgcolor}>
       <View style={styles.container}>
         <Text style={styles.label}>Titulo</Text>
         <TextInput

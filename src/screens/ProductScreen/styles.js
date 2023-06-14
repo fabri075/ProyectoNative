@@ -4,7 +4,9 @@ import colors from "../../constants/colors";
 const styles = StyleSheet.create({
    container: {
     flex: 1,
-    margin: 30,
+    backgroundColor: colors.primary,
+    maxHeight: "90%",
+    paddingBottom: 15,
   },
   label: {
     fontSize: 18,

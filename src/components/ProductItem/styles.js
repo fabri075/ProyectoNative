@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
         marginBottom: 6,
       },
       description: {
-        color: "#777",
+        color: colors.tertiary,
         fontSize: 16,
       },
 })
