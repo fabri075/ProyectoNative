@@ -1,19 +1,19 @@
 import { StyleSheet, Text, View } from "react-native";
 
 import Ionicons from "@expo/vector-icons/Ionicons";
-import { Entypo } from '@expo/vector-icons'; 
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import ConfigurationScreen from "../screens/ConfigurationScreen";
-import NotificationScreen from "../screens/NotificationScreen";
-import ProductScreen from "../screens/ProductScreen";
 import MainScreen from "../screens/MainScreen";
 import colors from "../constants/colors";
 import { TouchableOpacity } from "react-native";
-import NewProductScreen from "../screens/NewProductScreen";
+import NewPublicationScreen from "../screens/NewPublicationScreen";
+import AccountScreen from "../screens/AccountScreen";
+import { useSelector } from "react-redux";
+import DetailsScreen from "../screens/DetailsScreen";
 
 const BottomTabs = createBottomTabNavigator();
 
 export default BottomTabNavigator = () => {
+  const userLogued = useSelector(state => state.users.selected);
   return (
     <BottomTabs.Navigator
       screenOptions={{
@@ -26,51 +26,82 @@ export default BottomTabNavigator = () => {
       <BottomTabs.Screen
         name="Home"
         component={MainScreen}
-        options={{
+        options={({ navigation }) => ({
           title: "Menú principal",
+          headerStyle: {
+            backgroundColor: colors.primary
+          },
+          headerTintColor: colors.white,
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },
           tabBarIcon: () => (
             <View style={styles.tabButtons}>
               <Ionicons name="home" size={30} color="black" />
               <Text>Inicio</Text>
             </View>
           ),
-        }}
-      />
-      <BottomTabs.Screen
-        name="Product"
-        component={ProductScreen}
-        options={({ navigation }) => ({
-          title: "Productos",
-          tabBarIcon: () => (
-            <View style={styles.tabButtons}>
-              <Entypo name="shop" size={24} color="black" />
-              <Text>Productos</Text>
-            </View>
-          ),
           headerRight: () => (
-            <TouchableOpacity onPress={() => navigation.navigate("newProduct")}>
-              <Ionicons name="md-add" color="black" size={23} />
+            <TouchableOpacity style={styles.addIcon} onPress={() => navigation.navigate("newPublication")}>
+              <Ionicons name="md-add" color="white" size={23} />
             </TouchableOpacity>
           ),
         })}
       />
       <BottomTabs.Screen
-        name="Configuration"
-        component={ConfigurationScreen}
+        name="newPublication"
+        component={NewPublicationScreen}
         options={{
-          title: "Configuración",
+          title: "Subir publicacion",
+          headerStyle: {
+            backgroundColor: colors.primary,
+          },
+          headerTintColor: colors.white,
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },
+          tabBarIcon: () => (
+            <View style={styles.tabButtons}>
+            <Ionicons name="add-circle" size={30} color="black" />
+              <Text>Publicar</Text>
+            </View>
+          )
+        }}
+      />
+      <BottomTabs.Screen
+        name="Account"
+        component={AccountScreen}
+        options={{
+          title: "Mi cuenta",
+          headerStyle: {
+            backgroundColor: colors.primary,
+          },
+          headerTintColor: colors.white,
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },
           tabBarIcon: () => (
             <View style={styles.tabButtons}> 
-              <Ionicons name="settings" size={30} color="black" />
-              <Text>Configuración</Text>
+              <Ionicons name="person-circle-sharp" size={30} color="black" />
+              <Text>{userLogued.name}</Text>
             </View>
           ),
         }}
       />
       <BottomTabs.Screen
-      name="newProduct"
-      component={NewProductScreen}
-      options={{ title: "Nuevo producto", tabBarButton: () => null}}
+      name="details"
+      component={DetailsScreen}
+      options={{
+        title: "Detalles de Publicación", 
+        headerStyle: {
+          backgroundColor: colors.primary,
+        },
+        headerTintColor: colors.white,
+        headerTitleStyle: {
+          fontWeight: 'bold',
+        },
+        tabBarButton: () => null
+      }}
     />
     </BottomTabs.Navigator>
   );
@@ -93,4 +124,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
+  addIcon:{
+    marginRight: 10
+  }
 });

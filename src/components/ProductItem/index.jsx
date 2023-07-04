@@ -3,6 +3,7 @@ import styles from "./styles";
 import React from "react";
 
 const ProductItem = ({ title, description, image }) => {
+  console.log(title);
   return (
     <View style={styles.productItem}>
       <Image style={styles.image} source={{ uri: image }} />
