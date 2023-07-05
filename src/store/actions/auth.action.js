@@ -25,6 +25,9 @@ export const signUp = (email, password) => {
         token: data.idToken,
         userId: data.localId,
       });
+      if (!data.error) {
+        Alert.alert("Perfecto", "Email registrado con éxito", [{ text: "OK" }]);
+      }
     } catch (error) {
       console.log(error);
     }
@@ -46,7 +49,7 @@ export const signIn = (email, password) => {
       });
       const data = await response.json();
       if (data.error) {
-        Alert.alert("Atención!", "El email y/o la contraseña no es correcta", [{ text: "OK" }]);
+        Alert.alert("Atención!", "Datos incorrectos", [{ text: "OK" }]);
         return;
       }
       dispatch({

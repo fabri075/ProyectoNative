@@ -7,13 +7,11 @@ import colors from "../constants/colors";
 import { TouchableOpacity } from "react-native";
 import NewPublicationScreen from "../screens/NewPublicationScreen";
 import AccountScreen from "../screens/AccountScreen";
-import { useSelector } from "react-redux";
 import DetailsScreen from "../screens/DetailsScreen";
 
 const BottomTabs = createBottomTabNavigator();
 
 export default BottomTabNavigator = () => {
-  const userLogued = useSelector(state => state.users.selected);
   return (
     <BottomTabs.Navigator
       screenOptions={{
@@ -83,7 +81,7 @@ export default BottomTabNavigator = () => {
           tabBarIcon: () => (
             <View style={styles.tabButtons}> 
               <Ionicons name="person-circle-sharp" size={30} color="black" />
-              <Text>{userLogued.name}</Text>
+              <Text>Mi cuenta</Text>
             </View>
           ),
         }}
