@@ -1,21 +1,20 @@
 import * as ImagePicker from "expo-image-picker";
 
 import { Alert, Button, Image, Text, View } from "react-native";
-import React, { useState } from "react";
-import styles from "./styles"
+import React, { useEffect, useState } from "react";
+import styles from "./styles";
 
-const ImageSelector = props => {
+const ImageSelector = (props) => {
   const [pickedUri, setPickedUri] = useState();
+  useEffect(() => {
+    setPickedUri("");
+  }, [props.OnKey]);
 
   const verifyPermissons = async () => {
     const { status } = await ImagePicker.requestCameraPermissionsAsync();
 
     if (status !== "granted") {
-      Alert.alert(
-        "Permisos insuficientes",
-        "Necesitamos dar permisos de la camara para usar la aplicacion",
-        [{ text: "Ok" }]
-      );
+      Alert.alert("Permisos insuficientes", "Necesitamos dar permisos de la camara para usar la aplicacion", [{ text: "Ok" }]);
       return false;
     }
     return true;
@@ -36,17 +35,8 @@ const ImageSelector = props => {
 
   return (
     <View style={styles.container}>
-      <View style={styles.preview}>
-        {!pickedUri ? (
-          <Text>No hay imagen seleccionada...</Text>
-        ) : (
-          <Image style={styles.image} source={{ uri: pickedUri }} />
-        )}
-      </View>
-      <Button
-        title="Tomar Foto"
-        onPress={handlerTakeImage}
-      />
+      <View style={styles.preview}>{!pickedUri ? <Text>No hay imagen seleccionada...</Text> : <Image style={styles.image} source={{ uri: pickedUri }} />}</View>
+      <Button title="Tomar Foto" onPress={handlerTakeImage} />
     </View>
   );
 };
