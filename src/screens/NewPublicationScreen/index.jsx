@@ -37,9 +37,9 @@ const NewPublicationScreen = ({ navigation }) => {
         <Text style={styles.label}>Descripción</Text>
         <TextInput style={styles.input} value={description} onChangeText={handleDescriptionChange} />
         <ImageSelector OnKey={key} onImage={setImage} />
-        <Button title="Subir Publicación" onPress={handleSave} />
         <Text style={styles.label}>Autor</Text>
         <TextInput style={styles.input} value={autor} onChangeText={handleAutorChange} />
+        <Button title="Subir Publicación" onPress={handleSave} />
       </View>
     </ScrollView>
   );

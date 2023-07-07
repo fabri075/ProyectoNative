@@ -6,6 +6,7 @@ import styles from "./styles";
 
 const ImageSelector = (props) => {
   const [pickedUri, setPickedUri] = useState();
+  //pickedUri siempre queda configurado con la ultima imagen cargada, asi que añadi una nueva propiedad para reiniciarlo cada vez que se haga un alta nueva
   useEffect(() => {
     setPickedUri("");
   }, [props.OnKey]);
