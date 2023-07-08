@@ -2,20 +2,21 @@ import { StyleSheet } from "react-native";
 import colors from "../../constants/colors";
 
 const styles = StyleSheet.create({
-  bgcolor: {
-    backgroundColor: colors.primary
-  },
   container: {
     flex: 1,
     margin: 30
   },
+  bgImage:{
+    flex: 1,
+    justifyContent: "center"
+  },
   label: {
     fontSize: 18,
     marginBottom: 16,
-    color: colors.white
+    color: colors.black
   },
   input: {
-    borderBottomColor: "#ccc",
+    borderBottomColor: colors.black,
     borderBottomWidth: 1,
     marginBottom: 16,
     paddingHorizontal: 2,

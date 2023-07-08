@@ -1,4 +1,4 @@
-import { View, Text } from "react-native";
+import { View, Text, ImageBackground } from "react-native";
 import React from "react";
 import styles from "./styles";
 import Card from "../../components/Card";
@@ -14,14 +14,16 @@ const AccountScreen = ({ navigation }) => {
     navigation.navigate("Login");
   }
   return (
+    <ImageBackground resizeMode="cover" style={styles.bgImage} imageStyle={{ opacity: 0.15 }} source={require("../../assets/images/background.jpg")}>
     <View style={styles.container}>
-      <Card otherStyles={{ marginTop: 20 }}>
-        <Text style={styles.welcome}>Favoritos</Text>
-      </Card>
-      <SafeAreaView style={styles.logout}>
-        <Button textButton={"Cerrar Sesión"} pressAction={() => onLogout()}></Button>
-      </SafeAreaView>
+        <Card otherStyles={{ marginTop: 20 }}>
+          <Text style={styles.welcome}>Favoritos</Text>
+        </Card>
+        <SafeAreaView style={styles.logout}>
+          <Button textButton={"Cerrar Sesión"} pressAction={() => onLogout()}></Button>
+        </SafeAreaView>
     </View>
+      </ImageBackground>
   );
 };
 

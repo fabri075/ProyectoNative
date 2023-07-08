@@ -19,6 +19,7 @@ export default BottomTabNavigator = () => {
         tabBarStyle: styles.tabBar,
         tabBarActiveTintColor: colors.primary,
         tabBarActiveBackgroundColor: colors.tertiary,
+        tabBarHideOnKeyboard: true
       }}
     >
       <BottomTabs.Screen

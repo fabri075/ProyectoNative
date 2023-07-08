@@ -1,5 +1,5 @@
 import { PUBLICATIONS } from "../../data/publications";
-import { SELECTED_PUBLICATION, ADD_PUBLICATION } from "../actions/publication.action";
+import { SELECTED_PUBLICATION, ADD_PUBLICATION, LOAD_PUBLICATIONS } from "../actions/publication.action";
 import Publication from "../../models/Publication";
 
 const initialState = {
@@ -21,6 +21,10 @@ const PublicationsReducer = (state = initialState, action) => {
       const fecha = `${anio}-${mes < 10 ? "0" + mes : mes}-${dia < 10 ? "0" + dia : dia}`;
       const newPublication = new Publication(action.payload.id, action.payload.title, action.payload.description, action.payload.autor, action.payload.image, fecha);
       return { ...state, publications: state.publications.concat(newPublication) };
+      // case LOAD_PUBLICATIONS: 
+      // return {
+      //   ...state, publications: action.publications.map(item => new Publication())
+      // }
     default:
       return state;
   }

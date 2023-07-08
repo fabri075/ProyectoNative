@@ -1,8 +1,10 @@
 import * as ImagePicker from "expo-image-picker";
 
-import { Alert, Button, Image, Text, View } from "react-native";
+import { Alert, Image, Text, View } from "react-native";
 import React, { useEffect, useState } from "react";
 import styles from "./styles";
+import Button from "../Button";
+import colors from "../../constants/colors";
 
 const ImageSelector = (props) => {
   const [pickedUri, setPickedUri] = useState();
@@ -37,7 +39,7 @@ const ImageSelector = (props) => {
   return (
     <View style={styles.container}>
       <View style={styles.preview}>{!pickedUri ? <Text>No hay imagen seleccionada...</Text> : <Image style={styles.image} source={{ uri: pickedUri }} />}</View>
-      <Button title="Tomar Foto" onPress={handlerTakeImage} />
+      <Button textButton="Tomar Foto" buttonStyle={{backgroundColor: colors.primary}} pressAction={handlerTakeImage} />
     </View>
   );
 };

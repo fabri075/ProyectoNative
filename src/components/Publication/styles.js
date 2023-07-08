@@ -28,7 +28,9 @@ const styles = StyleSheet.create({
         marginBottom: 6,
       },
       description: {
-        color: colors.tertiary,
+        color: colors.secondary,
+        fontWeight: "bold",
+        textShadowColor: colors.black,
         fontSize: 16,
       },
 })

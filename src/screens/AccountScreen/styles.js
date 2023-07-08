@@ -6,9 +6,12 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "space-between",
     alignItems: "center",
-    backgroundColor: colors.primary,
     maxHeight: "90%",
-    paddingBottom: 15,
+    paddingBottom: 75,
+  },
+  bgImage:{
+    flex: 1,
+    justifyContent: "center"
   },
 
   user: {
