@@ -12,10 +12,12 @@ init()
 })
 
 export default function App() {
-//  const [loaded] = useFonts({
-//    "InstrumentSerif-Regular": require("./src/assets/fonts/InstrumentSerif-Regular.ttf"),
-//  });
-
+ const [loaded] = useFonts({
+   "Fasthand-Regular": require("./src/assets/fonts/Fasthand-Regular.ttf"),
+ });
+ if(!loaded){
+  return null;
+ }
   return (
     <Provider store={store}>
       <View style={styles.container}>

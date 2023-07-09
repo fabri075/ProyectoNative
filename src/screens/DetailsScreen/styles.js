@@ -12,6 +12,10 @@ const styles = StyleSheet.create({
     textAlign: "center",
     marginBottom: 10,
   },
+  bgImage:{
+    flex: 1,
+    justifyContent: "center"
+  },
   image: {
     flex: 1,
     resizeMode: "cover",

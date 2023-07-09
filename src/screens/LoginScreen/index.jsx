@@ -8,6 +8,8 @@ import { AntDesign } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { useDispatch } from "react-redux";
 import { signUp, signIn } from "../../store/actions/auth.action";
+import { ImageBackground } from "react-native";
+import colors from "../../constants/colors";
 const FORM_INPUT_UPDATE = 'FORM_INPUT_UPDATE';
 
 const formReducer = (state, action) => {
@@ -83,13 +85,18 @@ const LoginScreen = ({ navigation }) => {
     }
   };
   return (
-    <View style={styles.container}>
-      <Card>
-        <Image source={require("../../assets/images/LogoApp.png")} style={styles.image} />
-        <Text style={styles.title}>INICIAR SESIÓN</Text>
-        <View style={styles.inputBox}>
-          <AntDesign name="user" size={25} color="black" />
-          <Input 
+    <ImageBackground resizeMode="cover" style={styles.bgImage} imageStyle={{ opacity: 0.5 }} source={require("../../assets/images/backgroundLogin.jpeg")}>
+      <View style={styles.container}>
+        <Card>
+          <View style={styles.logoView}>
+            <Image source={require("../../assets/images/LogoApp.png")} style={styles.image} />
+            <Text style={styles.titleLogo}>Botanicus</Text>
+          </View>
+          <Text style={styles.title}>INICIAR SESIÓN</Text>
+
+          <View style={styles.inputBox}>
+            <AntDesign name="user" size={25} color="black" />
+            <Input
               id="email"
               placeholder="Email"
               keyboardType="email-address"
@@ -99,10 +106,10 @@ const LoginScreen = ({ navigation }) => {
               errorText="Por favor ingrese un email valido"
               onInputChange={onInputChangeHandler}
               initialValue="" />
-        </View>
-        <View style={styles.inputBox}>
-          <MaterialCommunityIcons name="form-textbox-password" size={25} color="black" />
-          <Input id="password"
+          </View>
+          <View style={styles.inputBox}>
+            <MaterialCommunityIcons name="form-textbox-password" size={25} color="black" />
+            <Input id="password"
               placeholder="Contraseña"
               keyboardType="default"
               required
@@ -112,13 +119,14 @@ const LoginScreen = ({ navigation }) => {
               errorText="Por favor ingrese una contrasena valida"
               onInputChange={onInputChangeHandler}
               initialValue="" />
-        </View>
-        <View style={styles.buttons}>
-          <Button textButton={"Login"} pressAction={() => handleSignIn()}></Button>
-          <Button textButton={"Registrar"} pressAction={() => handleSignUp()}></Button>
-        </View>
-      </Card>
-    </View>
+          </View>
+          <View style={styles.buttons}>
+            <Button textButton={"Login"} pressAction={() => handleSignIn()}></Button>
+            <Button textButton={"Registrar"} pressAction={() => handleSignUp()}></Button>
+          </View>
+        </Card>
+      </View>
+    </ImageBackground>
   );
 };
 

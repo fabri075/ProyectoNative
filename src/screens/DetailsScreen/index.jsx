@@ -2,6 +2,7 @@ import { View, Text, Image } from "react-native";
 import React from "react";
 import { useSelector } from "react-redux";
 import styles from "./styles";
+import { ImageBackground } from "react-native";
 
 const DetailsScreen = () => {
   const publication = useSelector((state) => state.publications.selected);
@@ -11,6 +12,7 @@ const DetailsScreen = () => {
   const month = date.getMonth() + 1;
   const year = date.getFullYear();
   return (
+    <ImageBackground resizeMode="cover" style={styles.bgImage} imageStyle={{ opacity: 0.15 }} source={require("../../assets/images/background.jpg")}>
     <View style={styles.container}>
       <View style={styles.card}>
         <Text style={styles.title}>{publication.titulo} </Text>
@@ -23,6 +25,7 @@ const DetailsScreen = () => {
         </Text>
       </View>
     </View>
+    </ImageBackground>
   );
 };
 

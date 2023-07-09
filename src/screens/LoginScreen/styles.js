@@ -3,15 +3,28 @@ import colors from "../../constants/colors";
 
 const styles = StyleSheet.create({
   title: {
-    fontSize: 26,
+    fontSize: 20,
     fontWeight: "bold",
   },
   container: {
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
-    width: "100%",
-    backgroundColor: colors.primary,
+    width: "100%"
+  },
+  logoView:{
+    flexDirection: "row",
+    justifyContent: "center",
+    alignContent: "center"
+  },
+  titleLogo:{
+    fontFamily:'Fasthand-Regular',
+    fontSize: 35,
+    color: colors.green
+  },
+  bgImage:{
+    flex: 1,
+    justifyContent: "center"
   },
   inputBox: {
     flexDirection: "row",

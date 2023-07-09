@@ -5,7 +5,7 @@ const styles = StyleSheet.create({
     container:{
         width: 300,
 		maxWidth: '80%',
-		padding: 20,
+		padding: 15,
 		alignItems: 'center',
 		shadowColor: colors.black,
 		shadowOffset: { width: 0, height: 2 },
