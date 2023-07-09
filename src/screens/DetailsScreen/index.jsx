@@ -15,7 +15,7 @@ const DetailsScreen = () => {
       <View style={styles.card}>
         <Text style={styles.title}>{publication.titulo} </Text>
         <View style={styles.boxImage}>
-          <Image style={styles.image} source={{ uri: publication.image }} />
+          <Image defaultSource={require("../../assets/images/LogoApp.png")} style={styles.image} source={{ uri: publication.image }} />
         </View>
         <Text style={styles.description}>{publication.descripcion} </Text>
         <Text style={styles.date}>

@@ -1,4 +1,4 @@
-import { ScrollView, Text, TextInput, View, ImageBackground } from "react-native";
+import { ScrollView, Text, TextInput, View, ImageBackground, Alert } from "react-native";
 import React, { useEffect, useState } from "react";
 import styles from "./styles";
 import ImageSelector from "../../components/ImageSelector";
@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { addPublication } from "../../store/actions/publication.action";
 import Button from "../../components/Button";
 import colors from "../../constants/colors";
+
 const NewPublicationScreen = ({ navigation }) => {
   const publications = useSelector((state) => state.publications.publications);
   const autor = useSelector((state) => state.users.email);
@@ -25,6 +26,10 @@ const NewPublicationScreen = ({ navigation }) => {
       const fecha = `${anio}-${mes < 10 ? "0" + mes : mes}-${dia < 10 ? "0" + dia : dia}`;
 
   const handleSave = () => {
+    if(title == "" || description == "" || image == ""){
+      Alert.alert("Atención", "Todos los campos son obligatorios", [{ text: "OK" }]);
+      return;
+    }
     dispatch(addPublication(id, title, description, image, autor, fecha));
     setTitle("");
     setDescription("");

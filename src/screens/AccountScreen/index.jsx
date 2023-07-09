@@ -3,14 +3,15 @@ import React from "react";
 import styles from "./styles";
 import Card from "../../components/Card";
 import Button from "../../components/Button";
-import { useDispatch } from "react-redux";
-import { cleanUser } from "../../store/actions/users.action";
+import { useDispatch, useSelector } from "react-redux";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { signOut } from "../../store/actions/auth.action";
 
 const AccountScreen = ({ navigation }) => {
+  const publications = useSelector((state) => state.publications.publications);
   const dispatch = useDispatch();
   const onLogout = () => {
-    dispatch(cleanUser());
+    dispatch(signOut());
     navigation.navigate("Login");
   }
   return (
