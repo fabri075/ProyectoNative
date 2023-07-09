@@ -8,24 +8,27 @@ import Button from "../../components/Button";
 import colors from "../../constants/colors";
 const NewPublicationScreen = ({ navigation }) => {
   const publications = useSelector((state) => state.publications.publications);
+  const autor = useSelector((state) => state.users.email);
   const [key, setKey] = useState(0);
   const id = publications.length + 1;
   const dispatch = useDispatch();
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [image, setImage] = useState("");
-  const [autor, setAutor] = useState("");
 
   const handleTitleChange = (text) => setTitle(text);
   const handleDescriptionChange = (text) => setDescription(text);
-  const handleAutorChange = (text) => setAutor(text);
+  const fechaActual = new Date();
+      const anio = fechaActual.getFullYear();
+      const mes = fechaActual.getMonth() + 1;
+      const dia = fechaActual.getDate();
+      const fecha = `${anio}-${mes < 10 ? "0" + mes : mes}-${dia < 10 ? "0" + dia : dia}`;
 
   const handleSave = () => {
-    dispatch(addPublication(id, title, description, image, autor));
+    dispatch(addPublication(id, title, description, image, autor, fecha));
     setTitle("");
     setDescription("");
     setImage("");
-    setAutor("");
     setKey((prevKey) => prevKey + 1);
     navigation.navigate("Home");
   };
@@ -39,8 +42,6 @@ const NewPublicationScreen = ({ navigation }) => {
           <Text style={styles.label}>Descripción</Text>
           <TextInput style={styles.input} value={description} placeholder="Escriba una descripción" onChangeText={handleDescriptionChange} />
           <ImageSelector OnKey={key} onImage={setImage} />
-          <Text style={styles.label} >Autor</Text>
-          <TextInput style={styles.input} placeholder="Escriba su nombre de autor" value={autor} onChangeText={handleAutorChange} />
           <Button textButton="Subir Publicación" buttonStyle={{ backgroundColor: colors.primary }} pressAction={handleSave} />
         </View>
       </ImageBackground>

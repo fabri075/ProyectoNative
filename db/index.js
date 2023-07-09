@@ -20,11 +20,11 @@ export const init = () => {
   return promise;
 };
 
-export const insertPublication = (title, description, image, autor, date) => {
+export const insertPublication = (id, title, description, image, autor, date) => {
     const promise = new Promise((resolve, reject) => {
         db.transaction(tx => {
-            tx.executeSql(`insert into publication (title, description, image, autor, date) VALUES (?, ?, ?, ?, ?);`,
-            [title, description, image, autor, date],
+            tx.executeSql(`insert into publication (id, title, description, image, autor, date) VALUES (?, ?, ?, ?, ?, ?);`,
+            [id, title, description, image, autor, date],
             (_, result) => resolve(result),
             (_, err) => reject(err)
             );
@@ -34,14 +34,15 @@ export const insertPublication = (title, description, image, autor, date) => {
 }
 
 export const fetchPublication = () => {
-    const promise = new Promise((resolve, reject) => {
-      db.transaction((tx) => {
-        tx.executeSql(
-          `SELECT * from publication;`,
-          (_, result) => resolve(result),
-          (_, err) => reject(err)
-        );
-      });
-    });
-    return promise;
-  };
+	const promise = new Promise((resolve, reject) => {
+		db.transaction((tx) => {
+			tx.executeSql(
+				'SELECT * FROM publication',
+				[],
+				(_, result) => resolve(result),
+				(_, err) => reject(err)
+			);
+		});
+	});
+	return promise;
+};

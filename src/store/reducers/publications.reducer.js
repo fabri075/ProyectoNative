@@ -14,17 +14,25 @@ const PublicationsReducer = (state = initialState, action) => {
       if (IndexPub === -1) return state;
       return { ...state, selected: state.publications[IndexPub] };
     case ADD_PUBLICATION:
-      const fechaActual = new Date();
-      const anio = fechaActual.getFullYear();
-      const mes = fechaActual.getMonth() + 1;
-      const dia = fechaActual.getDate();
-      const fecha = `${anio}-${mes < 10 ? "0" + mes : mes}-${dia < 10 ? "0" + dia : dia}`;
-      const newPublication = new Publication(action.payload.id, action.payload.title, action.payload.description, action.payload.autor, action.payload.image, fecha);
+      const newPublication = new Publication(action.payload.id, action.payload.title, action.payload.description, action.payload.autor, action.payload.image, action.payload.fecha);
       return { ...state, publications: state.publications.concat(newPublication) };
-      // case LOAD_PUBLICATIONS: 
-      // return {
-      //   ...state, publications: action.publications.map(item => new Publication())
-      // }
+      case LOAD_PUBLICATIONS: 
+      //Concateno mis publicaciones de prueba del archivo json con las guardadas en storage
+      const actualPublications = state.publications;
+      const storagePublications = action.publications.map(item =>
+        new Publication(
+        item.id.toString(),
+        item.title,
+        item.description,
+        item.autor,
+        item.image,
+        item.date
+      ))
+      //Realizo un filtro para que no se vuelvan a guardar en mi state los registros de storage al realizar el metodo nuevamente
+      const filteredPublications = storagePublications.filter(
+        (stPub) => !actualPublications.some((actualPub) => actualPub.id === stPub.id)
+      );
+      return { ...state, publications: actualPublications.concat(filteredPublications)};
     default:
       return state;
   }

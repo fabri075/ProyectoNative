@@ -23,7 +23,7 @@ export const signUp = (email, password) => {
       dispatch({
         type: SIGNUP,
         token: data.idToken,
-        userId: data.localId,
+        userId: data.localId
       });
       if (!data.error) {
         Alert.alert("Perfecto", "Email registrado con éxito", [{ text: "OK" }]);
@@ -57,6 +57,7 @@ export const signIn = (email, password) => {
         token: data.idToken,
         userId: data.localId,
         register: data.registered,
+        email
       });
     } catch (error) {
       console.log(error);

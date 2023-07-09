@@ -3,13 +3,17 @@ import React from "react";
 import styles from "./styles";
 import { useDispatch, useSelector } from "react-redux";
 import Publication from "../../components/Publication";
-import { selectedPublication } from "../../store/actions/publication.action";
+import { selectedPublication, loadPublication } from "../../store/actions/publication.action";
+import { useEffect } from "react";
 
 const MainScreen = ({ navigation }) => {
-  const publications = useSelector((state) => state.publications.publications);
-  //Acomodo las publicaciones en orden de creacion
-  publications.sort((a, b) => b.id - a.id);
   const dispatch = useDispatch();
+  const publications = useSelector((state) => state.publications.publications);
+  useEffect(() => {
+    dispatch(loadPublication());
+  }, []);
+  //Acomodo las publicaciones en orden de creacion 
+  publications.sort((a, b) => b.id - a.id);
   const handleSelectedPublication = (item) => {
     dispatch(selectedPublication(item.id));
     navigation.navigate("details", {
